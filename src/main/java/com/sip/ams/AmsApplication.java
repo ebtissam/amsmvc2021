@@ -14,6 +14,8 @@ public class AmsApplication {
 		
 		new File(ProviderController.uploadDirectory).mkdir();
 		SpringApplication.run(AmsApplication.class, args);
+		
+		
 	}
 
 }

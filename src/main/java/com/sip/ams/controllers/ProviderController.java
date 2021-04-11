@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -39,7 +40,8 @@ public class ProviderController {
 	 public String listProviders(Model model) {
     
 
-	 model.addAttribute("providers",providerRepository.findAll());
+	model.addAttribute("providers",providerRepository.findAll());
+		//List<Provider>providers = (List<Provider>) providerRepository.findProviderByAddress("usa","hp");
 
 	 return "provider/listProviders";
 

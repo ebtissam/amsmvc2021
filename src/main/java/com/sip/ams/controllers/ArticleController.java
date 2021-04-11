@@ -43,19 +43,32 @@ public class ArticleController {
 		return "article/addArticle";
 	}
 
-	@PostMapping("add")
-	// @ResponseBody
-	public String addArticle(@Valid Article article, BindingResult result, @RequestParam(name = "providerId", required = false) Long p) {
-
-		Provider provider = providerRepository.findById(p)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid provider Id:" + p));
-		article.setProvider(provider);
-
-		articleRepository.save(article);
-		return "redirect:list";
-
-		// return article.getLabel() + " " +article.getPrice() + " " + p.toString();
-	}
+	
+	
+	
+	 @PostMapping("add")
+	    //@ResponseBody
+	    public String addArticle(Model model, @Valid Article article, BindingResult result, @RequestParam(name = "providerId", required = false) Long p) {
+	    	
+	    	if (result.hasErrors()) {
+	    		model.addAttribute("providers", providerRepository.findAll());
+	        	
+				return "article/addArticle";
+			}
+	    	
+	    	Provider provider = providerRepository.findById(p)
+	                .orElseThrow(()-> new IllegalArgumentException("Invalid provider Id:" + p));
+	    	article.setProvider(provider);
+	    	
+	    	 articleRepository.save(article);
+	    	 return "redirect:list";
+	    	
+	    	//return article.getLabel() + " " +article.getPrice() + " " + p.toString();
+	    }
+	
+	
+	
+	
 
 	@GetMapping("delete/{id}")
 	public String deleteProvider(@PathVariable("id") long id, Model model) {
