@@ -18,6 +18,7 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+
 	@NotBlank(message = "Label is mandatory")
 	@Column(name = "label")
 	private String label;
@@ -25,20 +26,37 @@ public class Article {
 	@Column(name = "price")
 	private float price;
 
-    @Column(name = "photoFront")
-    private String photoFront;
-    
-    @Column(name = "photoProfil")
-    private String photoProfil;
+	@Column(name = "photoface")
+	private String photoface;
+	
+	@Column(name = "photoprofil")
+	private String photoprofil;
+	
+	
+	public String getPhotoface() {
+		return photoface;
+	}
+
+	public void setPhotoface(String photoface) {
+		this.photoface = photoface;
+	}
+
+	public String getPhotoprofil() {
+		return photoprofil;
+	}
+
+	public void setPhotoprofil(String photoprofil) {
+		this.photoprofil = photoprofil;
+	}
 
 	public Article() {
 	}
 
-	public Article(String label, float price, String photoFront,String photoProfil) {
+	public Article(String label, float price, String photoface, String photoprofil) {
 		this.price = price;
 		this.label = label;
-		this.photoFront=photoFront;
-		this.photoProfil=photoProfil;
+		this.photoface = photoface;
+		this.photoprofil = photoprofil;
 	}
 
 	public void setId(long id) {
@@ -65,29 +83,8 @@ public class Article {
 		this.price = price;
 	}
 
-	
-	
-	
-	public String getPhotoFront() {
-		return photoFront;
-	}
-
-	public void setPhotoFront(String photoFront) {
-		this.photoFront = photoFront;
-	}
-
-	public String getPhotoProfil() {
-		return photoProfil;
-	}
-
-	public void setPhotoProfil(String photoProfil) {
-		this.photoProfil = photoProfil;
-	}
-
-
-
-
 	/**** Many To One ****/
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "provider_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)

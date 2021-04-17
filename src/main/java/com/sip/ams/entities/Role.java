@@ -1,8 +1,6 @@
 package com.sip.ams.entities;
 
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "role")
@@ -11,20 +9,15 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "role_id")
 	private int id;
-	@Column(name = "role")
-	private String role;
-
-	
-	
-	public Role() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public Role(String role) {
-		
+	
 		this.role = role;
 	}
+	public Role() {
+	}
+
+	@Column(name = "role")
+	private String role;
 
 	public int getId() {
 		return id;

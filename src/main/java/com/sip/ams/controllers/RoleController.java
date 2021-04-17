@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.sip.ams.entities.Role;
 import com.sip.ams.repositories.RoleRepository;
 
@@ -24,10 +23,8 @@ public class RoleController {
 
 	@GetMapping("list")
 	public String listRoles(Model model) {
-
 		List<Role> roles = (List<Role>) roleRepository.findAll();
 		long nbr = roleRepository.count();
-		System.out.println(nbr);
 		if (roles.size() == 0)
 			roles = null;
 		model.addAttribute("roles", roles);
@@ -43,7 +40,6 @@ public class RoleController {
 
 	@PostMapping("add")
 	public String addRole(@RequestParam("role") String role) {
-
 		System.out.println(role);
 		Role r = new Role(role);
 		Role rSaved = roleRepository.save(r);
